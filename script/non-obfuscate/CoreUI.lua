@@ -6,9 +6,11 @@ local RunService = game:GetService("RunService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CloseBind = Enum.KeyCode.RightControl
+local RandomString = loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/KryptonHub/main/script/non-obfuscate/RandomString.lua"))()
+
 
 local FluxLib = Instance.new("ScreenGui")
-FluxLib.Name = "FluxLib"
+FluxLib.Name = RandomString(10)
 FluxLib.Parent = game.CoreGui
 FluxLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
