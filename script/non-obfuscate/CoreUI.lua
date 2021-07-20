@@ -127,7 +127,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
         Timer.Parent = LeftFrame
         Timer.BackgroundTransparency = 0.5
         Timer.Text = "..."
-        Timer.Position = UDim2.new(0.097560972, 10, 0.0475206636, 0)
+        Timer.Position = UDim2.new(0.097560972, 0, 10.0475206636, 0)
 	Timer.Size = UDim2.new(0, 111, 0, 34)
 	Timer.Font = Enum.Font.GothamBold
 	Timer.TextSize = 22.000
