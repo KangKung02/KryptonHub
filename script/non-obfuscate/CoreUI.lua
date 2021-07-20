@@ -96,7 +96,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	local MainFrame = Instance.new("Frame")
 	local MainCorner = Instance.new("UICorner")
 	local LeftFrame = Instance.new("Frame")
-        local Timer = Instance.new("TextLabel")
+    local Timer = Instance.new("TextLabel")
 	local LeftCorner = Instance.new("UICorner")
 	local GlowTabHolder = Instance.new("ImageLabel")
 	local Title = Instance.new("TextLabel")
@@ -109,7 +109,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	MainFrame.Name = "MainFrame"
 	MainFrame.Parent = FluxLib
 	MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-	MainFrame.BackgroundColor3 = _G.Settings["Color"]["MainFrame"] or Color3.fromRGB(50, 53, 59)
+	MainFrame.BackgroundColor3 = (_G.Settings and _G.Settings["Color"] and _G.Settings["Color"]["MainFrame"]) or Color3.fromRGB(50, 53, 59)
 	MainFrame.ClipsDescendants = true
 	MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 	MainFrame.Size = UDim2.new(0, 0, 0, 0)
@@ -120,19 +120,19 @@ function Flux:Window(text, bottom,mainclr,toclose)
 
 	LeftFrame.Name = "LeftFrame"
 	LeftFrame.Parent = MainFrame
-	LeftFrame.BackgroundColor3 = _G.Settings["Color"]["LeftFrame"] or Color3.fromRGB(47, 49, 54)
+	LeftFrame.BackgroundColor3 = (_G.Settings and _G.Settings["Color"] and _G.Settings["Color"]["LeftFrame"]) or Color3.fromRGB(47, 49, 54)
 	LeftFrame.Size = UDim2.new(0, 205, 0, 484)
 
-        Timer.Name = "Timer"
-        Timer.Parent = LeftFrame
-        Timer.BackgroundTransparency = 0.5
-        Timer.Text = "..."
-        Timer.Position = _G.A
+    Timer.Name = "Timer"
+    Timer.Parent = LeftFrame
+    Timer.BackgroundTransparency = 1
+    Timer.Text = "..."
+    Timer.Position = UDim2.new(0, 50, 0, 450)
 	Timer.Size = UDim2.new(0, 111, 0, 34)
 	Timer.Font = Enum.Font.GothamBold
 	Timer.TextSize = 22.000
-	Timer.TextXAlignment = Enum.TextXAlignment.Left
-
+	Timer.TextXAlignment = Enum.TextXAlignment.Center
+    Timer.TextColor3 = Color3.fromRGB(255, 255, 255)
     spawn(function()
         local Old = os.time()
         while wait(1) do
