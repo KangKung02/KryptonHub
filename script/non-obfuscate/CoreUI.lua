@@ -133,17 +133,15 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	Timer.TextSize = 22.000
 	Timer.TextXAlignment = Enum.TextXAlignment.Center
     Timer.TextColor3 = Color3.fromRGB(255, 255, 255)
-    spawn(function()
-        local Old = os.time()
-        while wait(1) do
-            local Time = os.time() - Old
-            local DisplayTime = function()
-                return os.date("%X", 61200 + Time)
+    if _G.Settings and _G.Settings["Timer"] then
+        spawn(function()
+            local TimeFunc = loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/KryptonHub/main/script/non-obfuscate/Timer.lua"))()
+            local Old = os.time()
+            while wait(1) do
+                Timer.Text = TimeFunc(Old)
             end
-            Timer.Text = DisplayTime()
-        end
-    end)
-
+        end)
+    end
 	LeftCorner.CornerRadius = UDim.new(0, 5)
 	LeftCorner.Name = "LeftCorner"
 	LeftCorner.Parent = LeftFrame
