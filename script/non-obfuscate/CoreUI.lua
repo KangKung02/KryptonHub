@@ -96,7 +96,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	local MainFrame = Instance.new("Frame")
 	local MainCorner = Instance.new("UICorner")
 	local LeftFrame = Instance.new("Frame")
-    local Timer = Instance.new("TextLabel")
+        local Timer = Instance.new("TextLabel")
 	local LeftCorner = Instance.new("UICorner")
 	local GlowTabHolder = Instance.new("ImageLabel")
 	local Title = Instance.new("TextLabel")
@@ -123,11 +123,11 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	LeftFrame.BackgroundColor3 = _G.Settings["Color"]["LeftFrame"] or Color3.fromRGB(47, 49, 54)
 	LeftFrame.Size = UDim2.new(0, 205, 0, 484)
 
-    Timer.Name = "Timer"
-    Timer.Parent = LeftFrame
-    Timer.BackgroundTransparency = 0.5
-    Timer.Text = "..."
-    Timer.Position = UDim2.new(0.097560972, 0, 0.0475206636, 0)
+        Timer.Name = "Timer"
+        Timer.Parent = LeftFrame
+        Timer.BackgroundTransparency = 0.5
+        Timer.Text = "..."
+        Timer.Position = UDim2.new(0.097560972, 0, 0.0475206636, 0)
 	Timer.Size = UDim2.new(0, 111, 0, 34)
 	Timer.Font = Enum.Font.GothamBold
 	Timer.TextSize = 22.000
