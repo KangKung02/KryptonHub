@@ -127,6 +127,12 @@ function Flux:Window(text, bottom,mainclr,toclose)
     Timer.Parent = LeftFrame
     Timer.BackgroundTransparency = 0.5
     Timer.Text = "..."
+    Title.Position = UDim2.new(0.097560972, 0, 0.0475206636, 0)
+	Title.Size = UDim2.new(0, 111, 0, 34)
+	Title.Font = Enum.Font.GothamBold
+	Title.TextSize = 25.000
+	Title.TextXAlignment = Enum.TextXAlignment.Left
+    
     spawn(function()
         local Old = os.time()
         while wait(1) do
