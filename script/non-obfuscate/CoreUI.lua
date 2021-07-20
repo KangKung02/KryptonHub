@@ -96,6 +96,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	local MainFrame = Instance.new("Frame")
 	local MainCorner = Instance.new("UICorner")
 	local LeftFrame = Instance.new("Frame")
+    local Timer = Instance.new("TextLabel")
 	local LeftCorner = Instance.new("UICorner")
 	local GlowTabHolder = Instance.new("ImageLabel")
 	local Title = Instance.new("TextLabel")
@@ -108,7 +109,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	MainFrame.Name = "MainFrame"
 	MainFrame.Parent = FluxLib
 	MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-	MainFrame.BackgroundColor3 = Color3.fromRGB(50, 53, 59)
+	MainFrame.BackgroundColor3 = _G.Settings["Color"]["MainFrame"] or Color3.fromRGB(50, 53, 59)
 	MainFrame.ClipsDescendants = true
 	MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 	MainFrame.Size = UDim2.new(0, 0, 0, 0)
@@ -119,8 +120,23 @@ function Flux:Window(text, bottom,mainclr,toclose)
 
 	LeftFrame.Name = "LeftFrame"
 	LeftFrame.Parent = MainFrame
-	LeftFrame.BackgroundColor3 = Color3.fromRGB(47, 49, 54)
+	LeftFrame.BackgroundColor3 = _G.Settings["Color"]["LeftFrame"] or Color3.fromRGB(47, 49, 54)
 	LeftFrame.Size = UDim2.new(0, 205, 0, 484)
+
+    Timer.Name = "Timer"
+    Timer.Parent = LeftFrame
+    Timer.BackgroundTransparency = 0.5
+    Timer.Text = "..."
+    spawn(function()
+        local Old = os.time()
+        while wait(1) do
+            local Time = os.time() - Old
+            local DisplayTime = function()
+                return os.date("%X", 61200 + Time)
+            end
+            Timer.Text = DisplayTime()
+        end
+    end)
 
 	LeftCorner.CornerRadius = UDim.new(0, 5)
 	LeftCorner.Name = "LeftCorner"
