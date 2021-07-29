@@ -1,5 +1,5 @@
 -- Check exploit
-if not rconsoleinput or rconsoleprint then
+if not rconsoleinput or not rconsoleprint then
     return game.Players.LocalPlayer:Kick()
 end
 
