@@ -1,6 +1,6 @@
 -- Check exploit
 if not rconsoleinput or not rconsoleprint then
-    return game.Players.LocalPlayer:Kick()
+    return game.Players.LocalPlayer:Kick("Your exploit did't support!")
 end
 
 -- Seting Value
