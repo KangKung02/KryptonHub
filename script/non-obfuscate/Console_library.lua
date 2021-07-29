@@ -9,7 +9,7 @@ Data.LAST_CONTEST = ""
 Data.Cache, Data.Cache.Input, Data.Cache.Toggle, Data.Cache.Box = {}, {}, {}, {}
 
 -- Add function
-Data.Addinput = function(self, string, command)
+Data.AddInput = function(self, string, command)
     self.Cache.Input[tostring(string)] = command
 end
 
