@@ -3,22 +3,34 @@ if not rconsoleinput or not rconsoleprint then
     return game.Players.LocalPlayer:Kick("Your exploit did't support!")
 end
 
--- Seting Value
+-- Seting variable
 local Data
 Data.LAST_CONTEST = ""
-Data.Cache, Data.Cache.Input, Data.Cache.Toggle, Data.Cache.Box = {}, {}, {}, {}
+Data.Cache, Data.Cache.Input, Data.Cache.Toggle, Data.Cache.Box, Data.LIST_COMMAND = {}, {}, {}, {}, {}
 
 -- Add function
-Data.AddInput = function(self, string, command)
-    self.Cache.Input[tostring(string)] = command
+Data.AddInput = function(self, name, desc, command)
+    self.Cache.Input[tostring(name)] = command
+    self.LIST_COMMAND[tostring(name)] = {
+        type = "Input",
+        desc = tostring(desc)
+    }
 end
 
-Data.AddToggle = function(self, string, command)
-    self.Cache.Toggle[tostring(string)] = command
+Data.AddToggle = function(self, name, desc, command)
+    self.Cache.Toggle[tostring(name)] = command
+    self.LIST_COMMAND[tostring(name)] = {
+        type = "Toggle",
+        desc = tostring(desc)
+    }
 end
 
-Data.AddBox = function(self, string, command)
-    self.Cache.Toggle[tostring(string)] = command
+Data.AddBox = function(self, name, desc, command)
+    self.Cache.Toggle[tostring(name)] = command
+    self.LIST_COMMAND[tostring(name)] = {
+        type = "Box",
+        desc = tostring(desc)
+    }
 end
 -- Running function
 
@@ -50,6 +62,11 @@ spawn(function()
     end
 end)
 
-
+-- help command
+Data:AddInput("Help", "this command it's for show all command and how to use.", function()
+    for i, v in pairs(Data.LIST_COMMAND) do
+        rconsoleprint(tostring(string.format("\"%s\" : \n\tType : %s\n\tDescription : %s", i, v.type, v.desc))))
+    end
+end)
 
 return Data
