@@ -6,7 +6,7 @@ end
 -- Seting variable
 local Data = {
     LAST_CONTEST = "",
-    LIST_COMMAND,
+    LIST_COMMAND = {},
     ENABLE,
     Cache = {
         Input = {},
@@ -16,13 +16,15 @@ local Data = {
     }
 }
 
+
+-- Add function
 Data.Colosole = function(self, name, color)
     self.ENABLE = true
     rconsolename(tostring(name))
     rconsoleprint(tostring(color))
     return self
 end
--- Add function
+
 Data.AddInput = function(self, name, desc, callback)
     self.Cache.Input[tostring(name):lower()] = callback
     self.LIST_COMMAND[tostring(name)] = {
@@ -60,8 +62,7 @@ end
 -- Running function
 
 spawn(function()
-    while wait(1) do
-        print("New console")
+    while wait() do
         Data.LAST_CONTEST = rconsoleinput()
         repeat
             wait()
@@ -106,21 +107,26 @@ spawn(function()
 end)
 
 -- Base Command
-Data:AddInput("Help", "this command it's for show all command and how to use.", function()
-    for i, v in pairs(Data.LIST_COMMAND) do
-        rconsoleprint(tostring(string.format("\"%s\" : \n\tType : %s\n\tDescription : %s\n", i, v.type, v.desc)))
-    end
+spawn(function()
+    repeat
+        wait()
+    until Data.ENABLE
+    Data:AddInput("Help", "this command it's for show all command and how to use.", function()
+        for i, v in pairs(Data.LIST_COMMAND) do
+            rconsoleprint(tostring(string.format("\"%s\" : \n\tType : %s\n\tDescription : %s\n", i, v.type, v.desc)))
+        end
+    end)
+    
+    Data:AddChoice("Color", "this command it's for change text color.", {"Black", "Blue", "Green", "Cyan", "Red","Magenta" ,"Brown" ,"Light Gray" ,"Dark Gray" ,"Light Blue" ,"Light Green" ,"Light Cyan" ,"Light Red" ,"Light Magenta" ,"Yellow" ,"White"}, function(msg)
+        local Content = string.upper(msg)
+        Content = string.gsub(Content, " ", "_")
+        Content = string.format("@@%s@@", Content)
+        rconsoleprint(Content)
+    end)
+    
+    Data:AddInput("Clear", "this command it's for clear all log.", function()
+        rconsoleclear()
+    end)    
 end)
 
-Data:AddChoice("Color", "this command it's for change text color.", {"Black", "Blue", "Green", "Cyan", "Red","Magenta" ,"Brown" ,"Light Gray" ,"Dark Gray" ,"Light Blue" ,"Light Green" ,"Light Cyan" ,"Light Red" ,"Light Magenta" ,"Yellow" ,"White"}, function(msg)
-    local Content = string.upper(msg)
-    Content = string.gsub(Content, " ", "_")
-    Content = string.format("@@%s@@", Content)
-    rconsoleprint(Content)
-end)
-
-Data:AddInput("Clear", "this command it's for clear all log.", function()
-    rconsoleclear()
-end)
-
---return Data
+return Data
