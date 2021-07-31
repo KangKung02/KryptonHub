@@ -67,7 +67,7 @@ spawn(function()
             wait()
         until Data.LAST_CONTEST
         if Data.Cache.Input[Data.LAST_CONTEST:lower()] then
-            pcall(Data.Cache.Input[Data.LAST_CONTEST])
+            pcall(Data.Cache.Input[Data.LAST_CONTEST:lower()])
             Data.LAST_CONTEST = ""
         elseif Data.Cache.Toggle[Data.LAST_CONTEST:lower()] then
             rconsoleprint("y/n\n")
@@ -76,13 +76,13 @@ spawn(function()
                 wait()
             until Data.LAST_CONTEST
             if Data.LAST_CONTEST:lower() == "y" then
-                pcall(Data.Cache.Toggle[Data.LAST_CONTEST], true)
+                pcall(Data.Cache.Toggle[Data.LAST_CONTEST:lower()], true)
             elseif Data.LAST_CONTEST:lower() == "n" then
-                pcall(Data.Cache.Toggle[Data.LAST_CONTEST], false)
+                pcall(Data.Cache.Toggle[Data.LAST_CONTEST:lower()], false)
             end
             Data.LAST_CONTEST = ""
         elseif Data.Cache.Box[Data.LAST_CONTEST:lower()] then
-            pcall(Data.Cache.Box[Data.LAST_CONTEST], Data.LAST_CONTEST)
+            pcall(Data.Cache.Box[Data.LAST_CONTEST:lower()], Data.LAST_CONTEST)
             Data.LAST_CONTEST = ""
         elseif Data.Cache.Choice[Data.LAST_CONTEST:lower()] then
             do
