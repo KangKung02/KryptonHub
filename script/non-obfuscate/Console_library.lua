@@ -82,7 +82,7 @@ spawn(function()
                 elseif Data.LAST_CONTEST:lower() == "n" then
                     pcall(Data.Cache.Toggle[LAST_CONTEST:lower()], false)
                 else
-                    rconsoleprint(string.format("'%s' it's not for toggle.", Data.LAST_CONTEST))
+                    rconsoleprint(string.format("'%s' it's not for toggle.\n", Data.LAST_CONTEST))
                 end
                 Data.LAST_CONTEST = ""
             end
@@ -113,7 +113,7 @@ spawn(function()
                 if Data.Cache.Choice[LAST_CONTEST:lower()].list[tonumber(Data.LAST_CONTEST)] then
                     pcall(Data.Cache.Choice[LAST_CONTEST:lower()].callback, Data.Cache.Choice[LAST_CONTEST:lower()].list[tonumber(Data.LAST_CONTEST)])
                 else
-                    rconsoleprint(string.format("'%s' it's not for choice.", Data.LAST_CONTEST))
+                    rconsoleprint(string.format("'%s' it's not for choice.\n", Data.LAST_CONTEST))
                 end
             end
         else
