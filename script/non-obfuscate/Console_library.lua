@@ -7,7 +7,6 @@ end
 local Data = {
     LAST_CONTEST = "",
     LIST_COMMAND = {},
-    ENABLE,
     Cache = {
         Input = {},
         Toggle = {},
@@ -18,11 +17,9 @@ local Data = {
 
 
 -- Add function
-Data.Colosole = function(self, name, color)
-    self.ENABLE = true
+Data.Start = function(sellf, name, color)
     rconsolename(tostring(name))
     rconsoleprint(tostring(color))
-    return self
 end
 
 Data.AddInput = function(self, name, desc, callback)
