@@ -81,6 +81,8 @@ spawn(function()
                     pcall(Data.Cache.Toggle[LAST_CONTEST:lower()], true)
                 elseif Data.LAST_CONTEST:lower() == "n" then
                     pcall(Data.Cache.Toggle[LAST_CONTEST:lower()], false)
+                else
+                    rconsoleprint(string.format("'%s' it's not for toggle.", Data.LAST_CONTEST))
                 end
                 Data.LAST_CONTEST = ""
             end
@@ -110,6 +112,8 @@ spawn(function()
                 until Data.LAST_CONTEST
                 if Data.Cache.Choice[LAST_CONTEST:lower()].list[tonumber(Data.LAST_CONTEST)] then
                     pcall(Data.Cache.Choice[LAST_CONTEST:lower()].callback, Data.Cache.Choice[LAST_CONTEST:lower()].list[tonumber(Data.LAST_CONTEST)])
+                else
+                    rconsoleprint(string.format("'%s' it's not for choice.", Data.LAST_CONTEST))
                 end
             end
         else
@@ -123,8 +127,6 @@ spawn(function()
     repeat
         wait()
     until Data.ENABLE
-
-    Data:Start("Kang Hub", "@@YELLOW@@")
 
     Data:AddInput("Help", "this command it's for show all command and how to use.", function()
         for i, v in pairs(Data.LIST_COMMAND) do
@@ -143,10 +145,5 @@ spawn(function()
         rconsoleclear()
     end)    
 end)
-
-
-
-
-
 
 return Data
