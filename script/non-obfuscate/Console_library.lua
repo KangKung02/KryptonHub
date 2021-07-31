@@ -82,6 +82,15 @@ spawn(function()
             end
             Data.LAST_CONTEST = ""
         elseif Data.Cache.Box[Data.LAST_CONTEST:lower()] then
+            do
+                rconsoleprint("Input : ")
+                local LAST_CONTEST = Data.LAST_CONTEST
+                Data.LAST_CONTEST = rconsoleinput()
+                repeat
+                    wait()
+                until Data.LAST_CONTEST
+                pcall(Data.Cache.Box[LAST_CONTEST:lower()], Data.LAST_CONTEST)
+            end
             pcall(Data.Cache.Box[Data.LAST_CONTEST:lower()], Data.LAST_CONTEST)
             Data.LAST_CONTEST = ""
         elseif Data.Cache.Choice[Data.LAST_CONTEST:lower()] then
