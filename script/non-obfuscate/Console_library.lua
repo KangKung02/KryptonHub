@@ -87,7 +87,7 @@ spawn(function()
         elseif Data.Cache.Choice[Data.LAST_CONTEST:lower()] then
             do
                 local Content = ""
-                for i, v in ipairs(Data.Cache.Choice[Data.LAST_CONTEST].list) do
+                for i, v in ipairs(Data.Cache.Choice[Data.LAST_CONTEST:lower()].list) do
                     Content = string.format("%s %s). %s\n\t", Content, i, v)
                 end
                 rconsoleprint("Select : \n\t"..Content.."\n")
