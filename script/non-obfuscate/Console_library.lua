@@ -41,7 +41,7 @@ Data.AddToggle = function(self, name, desc, callback)
 end
 
 Data.AddBox = function(self, name, desc, callback)
-    self.Cache.Toggle[tostring(name):lower()] = callback
+    self.Cache.Box[tostring(name):lower()] = callback
     self.LIST_COMMAND[tostring(name)] = {
         type = "Box",
         desc = tostring(desc)
@@ -70,17 +70,20 @@ spawn(function()
             pcall(Data.Cache.Input[Data.LAST_CONTEST:lower()])
             Data.LAST_CONTEST = ""
         elseif Data.Cache.Toggle[Data.LAST_CONTEST:lower()] then
-            rconsoleprint("y/n\n")
-            Data.LAST_CONTEST = rconsoleinput()
-            repeat
-                wait()
-            until Data.LAST_CONTEST
-            if Data.LAST_CONTEST:lower() == "y" then
-                pcall(Data.Cache.Toggle[Data.LAST_CONTEST:lower()], true)
-            elseif Data.LAST_CONTEST:lower() == "n" then
-                pcall(Data.Cache.Toggle[Data.LAST_CONTEST:lower()], false)
+            do
+                rconsoleprint("y/n\n")
+                local LAST_CONTEST = Data.LAST_CONTEST
+                Data.LAST_CONTEST = rconsoleinput()
+                repeat
+                    wait()
+                until Data.LAST_CONTEST
+                if Data.LAST_CONTEST:lower() == "y" then
+                    pcall(Data.Cache.Toggle[LAST_CONTEST:lower()], true)
+                elseif Data.LAST_CONTEST:lower() == "n" then
+                    pcall(Data.Cache.Toggle[LAST_CONTEST:lower()], false)
+                end
+                Data.LAST_CONTEST = ""
             end
-            Data.LAST_CONTEST = ""
         elseif Data.Cache.Box[Data.LAST_CONTEST:lower()] then
             do
                 rconsoleprint("Input : ")
@@ -90,9 +93,8 @@ spawn(function()
                     wait()
                 until Data.LAST_CONTEST
                 pcall(Data.Cache.Box[LAST_CONTEST:lower()], Data.LAST_CONTEST)
+                Data.LAST_CONTEST = ""
             end
-            pcall(Data.Cache.Box[Data.LAST_CONTEST:lower()], Data.LAST_CONTEST)
-            Data.LAST_CONTEST = ""
         elseif Data.Cache.Choice[Data.LAST_CONTEST:lower()] then
             do
                 local Content = ""
@@ -110,6 +112,8 @@ spawn(function()
                     pcall(Data.Cache.Choice[LAST_CONTEST:lower()].callback, Data.Cache.Choice[LAST_CONTEST:lower()].list[tonumber(Data.LAST_CONTEST)])
                 end
             end
+        else
+            rconsoleprint(string.format("'%s' is not recognized as an console command, say 'help' for get all command list!\n", Data.LAST_CONTEST))
         end
     end
 end)
@@ -119,12 +123,15 @@ spawn(function()
     repeat
         wait()
     until Data.ENABLE
+
+    Data:Start("Kang Hub", "@@YELLOW@@")
+
     Data:AddInput("Help", "this command it's for show all command and how to use.", function()
         for i, v in pairs(Data.LIST_COMMAND) do
             rconsoleprint(tostring(string.format("\"%s\" : \n\tType : %s\n\tDescription : %s\n", i, v.type, v.desc)))
         end
     end)
-    
+        
     Data:AddChoice("Color", "this command it's for change text color.", {"Black", "Blue", "Green", "Cyan", "Red","Magenta" ,"Brown" ,"Light Gray" ,"Dark Gray" ,"Light Blue" ,"Light Green" ,"Light Cyan" ,"Light Red" ,"Light Magenta" ,"Yellow" ,"White"}, function(msg)
         local Content = string.upper(msg)
         Content = string.gsub(Content, " ", "_")
@@ -136,5 +143,10 @@ spawn(function()
         rconsoleclear()
     end)    
 end)
+
+
+
+
+
 
 return Data
