@@ -5,6 +5,7 @@ end
 
 -- Seting variable
 local Data = {
+    ENABLE,
     LAST_CONTEST = "",
     LIST_COMMAND = {},
     Cache = {
@@ -18,6 +19,7 @@ local Data = {
 
 -- Add function
 Data.Start = function(self, name, color)
+    self.ENABLE = true
     rconsolename(tostring(name))
     rconsoleprint(tostring(color))
 end
