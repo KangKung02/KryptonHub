@@ -17,7 +17,7 @@ local Data = {
 
 
 -- Add function
-Data.Start = function(sellf, name, color)
+Data.Start = function(self, name, color)
     rconsolename(tostring(name))
     rconsoleprint(tostring(color))
 end
