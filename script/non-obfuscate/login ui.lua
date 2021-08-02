@@ -31,9 +31,10 @@ CoreUi.Parent = game.CoreGui
 Main.Name = "Main"
 Main.Parent = CoreUi
 Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Main.Position = UDim2.new(0.217917681, 0, 0.318785578, 0)
+Main.Position = UDim2.new(0, 450, 0, 225)
 Main.Size = UDim2.new(0, 463, 0, 246)
 Main.Active = true
+Main.Draggable = true
 
 UICorner.CornerRadius = UDim.new(0, 20)
 UICorner.Parent = Main
@@ -158,11 +159,21 @@ Exit.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 Exit.TextWrapped = true
 
 Exit.MouseButton1Down:Connect(function()
-    CoreUi:Destroy()
+    Main:TweenPosition(Main.Position + UDim2.new(0, 3000), Enum.EasingDirection.Out, nil, 2,true,function()
+        CoreUi:Destroy()
+    end)
+end)
+Discord.MouseButton1Down:Connect(function()
+    setclipboard("https://discord.gg/B659FscCBz")
+end)
+
+Gamelist.MouseButton1Down:Connect(function()
+    setclipboard("not finished yet")
 end)
 
 accept.MouseButton1Down:Connect(function()
-    CoreUi:Destroy()
-    wait(3)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/KryptonHub/main/script/non-obfuscate/ToScript.lua"))()
+    Main:TweenPosition(Main.Position + UDim2.new(0,2000), Enum.EasingDirection.Out, nil, 2, true,function()
+        CoreUi:Destroy()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/KryptonHub/main/script/non-obfuscate/ToScript.lua"))()
+    end)
 end)
