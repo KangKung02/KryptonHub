@@ -61,7 +61,7 @@ end
 -- Running function
 
 spawn(function()
-    while wait() do
+    while wait(1) do
         Data.LAST_CONTEST = rconsoleinput()
         repeat
             wait()
