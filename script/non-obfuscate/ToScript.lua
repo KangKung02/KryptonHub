@@ -22,6 +22,7 @@ if game.PlaceId == 1499872953 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung01/KryptonHub-2.0.0/main/AllScript/6381829480.lua"))();
   elseif game.PlaceId == 6574375780 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung01/KryptonHub-2.0.0/main/AllScript/6574375780.lua"))();
-  
+  elseif game.PlaceId == 4996049426 then
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/KryptonHub/main/script/obfuscate/All_Star_Tower_Defense.lua"))();
   else return error("this game did't support!", 2)
   end
