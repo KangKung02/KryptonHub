@@ -1,8 +1,10 @@
--- Gui to Lua
--- Version: 3.2
+pcall(function()
+    if not isfolder("KryptonHub") then
+        makefolder("KryptonHub")
+    end
+end)
 
--- Instances:
-
+local Database = {}
 local CoreUi = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -17,21 +19,19 @@ local Discord = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
 local Label = Instance.new("TextLabel")
 local UIGradient_3 = Instance.new("UIGradient")
-local Gamelist = Instance.new("TextButton")
-local UICorner_5 = Instance.new("UICorner")
-local Label_2 = Instance.new("TextLabel")
-local UIGradient_4 = Instance.new("UIGradient")
 local Exit = Instance.new("TextButton")
+local Auto_Login = Instance.new("ImageButton")
+local Label_2 = Instance.new("TextLabel")
 
 --Properties:
 
 CoreUi.Name = "CoreUi"
-CoreUi.Parent = game.CoreGui
+CoreUi.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 Main.Name = "Main"
 Main.Parent = CoreUi
 Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Main.Position = UDim2.new(0, 450, 0, 225)
+Main.Position = UDim2.new(0.217917681, 0, 0.318785578, 0)
 Main.Size = UDim2.new(0, 463, 0, 246)
 Main.Active = true
 Main.Draggable = true
@@ -114,35 +114,6 @@ Label.TextSize = 24.000
 UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(85, 85, 255)), ColorSequenceKeypoint.new(0.51, Color3.fromRGB(171, 171, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(170, 255, 0))}
 UIGradient_3.Parent = Discord
 
-Gamelist.Name = "Gamelist"
-Gamelist.Parent = Main
-Gamelist.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Gamelist.Position = UDim2.new(0.507559419, 0, 0.768292665, 0)
-Gamelist.Size = UDim2.new(0, 38, 0, 39)
-Gamelist.Font = Enum.Font.SourceSans
-Gamelist.Text = ""
-Gamelist.TextColor3 = Color3.fromRGB(0, 0, 0)
-Gamelist.TextSize = 14.000
-
-UICorner_5.CornerRadius = UDim.new(0, 999)
-UICorner_5.Parent = Gamelist
-
-Label_2.Name = "Label"
-Label_2.Parent = Gamelist
-Label_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Label_2.BackgroundTransparency = 1.000
-Label_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Label_2.BorderSizePixel = 0
-Label_2.Position = UDim2.new(0.789473653, 0, 0, 0)
-Label_2.Size = UDim2.new(0, 171, 0, 39)
-Label_2.Font = Enum.Font.Kalam
-Label_2.Text = "copy game list link."
-Label_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-Label_2.TextSize = 24.000
-
-UIGradient_4.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 0)), ColorSequenceKeypoint.new(0.48, Color3.fromRGB(255, 210, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(125, 125, 255))}
-UIGradient_4.Parent = Gamelist
-
 Exit.Name = "Exit"
 Exit.Parent = Main
 Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -158,6 +129,28 @@ Exit.TextSize = 32.000
 Exit.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 Exit.TextWrapped = true
 
+Auto_Login.Name = "Auto_Login"
+Auto_Login.Parent = Main
+Auto_Login.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Auto_Login.BackgroundTransparency = 1.000
+Auto_Login.BorderSizePixel = 0
+Auto_Login.Position = UDim2.new(0.565874696, 0, 0.756097555, 0)
+Auto_Login.Size = UDim2.new(0, 45, 0, 45)
+Auto_Login.Image = "rbxassetid://933851140"
+
+Label_2.Name = "Label"
+Label_2.Parent = Auto_Login
+Label_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Label_2.BackgroundTransparency = 1.000
+Label_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Label_2.BorderSizePixel = 0
+Label_2.Position = UDim2.new(0.211695015, 0, 0, 0)
+Label_2.Size = UDim2.new(0, 171, 0, 42)
+Label_2.Font = Enum.Font.Kalam
+Label_2.Text = "auto login"
+Label_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+Label_2.TextSize = 24.000
+
 Exit.MouseButton1Down:Connect(function()
     Main:TweenPosition(Main.Position + UDim2.new(0, 3000), Enum.EasingDirection.Out, nil, 2,true,function()
         CoreUi:Destroy()
@@ -167,8 +160,32 @@ Discord.MouseButton1Down:Connect(function()
     setclipboard("https://discord.gg/B659FscCBz")
 end)
 
-Gamelist.MouseButton1Down:Connect(function()
-    setclipboard("not finished yet")
+pcall(function()
+    Database = game:GetService("HttpService"):JSONDecode(readfile("KryptonHub/Main_Settings.json"))
+    Auto_Login.Image = Database.AutoLogin
+end)
+
+Auto_Login.MouseButton1Down:Connect(function()
+    if Auto_Login.Image == "rbxassetid://933851140" then
+        Auto_Login.Image = "rbxassetid://933851144"
+        Database.AutoLogin = "rbxassetid://933851144"
+    else
+        Auto_Login.Image = "rbxassetid://933851140"
+        Database.AutoLogin = "rbxassetid://933851140"
+    end
+    writefile("KryptonHub/Main_Settings.json", game:GetService("HttpService"):JSONEncode(Database))
+end)
+
+spawn(function()
+    repeat
+        wait()
+    until Database.AutoLogin == "rbxassetid://933851144"
+    delay(5, function()
+        Main:TweenPosition(Main.Position + UDim2.new(0,2000), Enum.EasingDirection.Out, nil, 2, true,function()
+            CoreUi:Destroy()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/KryptonHub/main/script/non-obfuscate/ToScript.lua"))()
+        end)
+    end)
 end)
 
 accept.MouseButton1Down:Connect(function()
