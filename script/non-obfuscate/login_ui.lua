@@ -1,3 +1,13 @@
+repeat
+    wait()
+until game.Players.LocalPlayer
+
+game:GetService("Players").LocalPlayer.Idled:Connect(function()
+        game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        wait()
+        game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)    
+end)
+
 pcall(function()
     if not isfolder("KryptonHub") then
         makefolder("KryptonHub")
