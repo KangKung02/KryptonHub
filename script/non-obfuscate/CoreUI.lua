@@ -7,7 +7,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CloseBind = Enum.KeyCode.RightControl
 local RandomString = loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/KryptonHub/main/script/non-obfuscate/RandomString.lua"))()
-_G.DiscordUrl = "https://discord.gg/B659FscCBz"
+_G.DiscordUrl = ""
 
 local FluxLib = Instance.new("ScreenGui")
 FluxLib.Name = RandomString(10)
