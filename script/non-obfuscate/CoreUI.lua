@@ -166,7 +166,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	Title.Position = UDim2.new(0.097560972, 0, 0.0475206636, 0)
 	Title.Size = UDim2.new(0, 111, 0, 34)
 	Title.Font = Enum.Font.GothamBold
-	Title.Text = "KryptonHub"
+	Title.Text = text or "KryptonHub"
 	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Title.TextSize = 25.000
 	Title.TextXAlignment = Enum.TextXAlignment.Left
@@ -178,9 +178,9 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	BottomText.Position = UDim2.new(0.097560972, 0, 0.0889999792, 0)
 	BottomText.Size = UDim2.new(0, 113, 0, 28)
 	BottomText.Font = Enum.Font.Gotham
-	BottomText.Text = bottom
+	BottomText.Text = bottom or "https://discord.gg/B659FscCBz"
 	BottomText.TextColor3 = Color3.fromRGB(255, 255, 255)
-	BottomText.TextSize = 14.000
+	BottomText.TextSize = 12.000
 	BottomText.TextTransparency = 0.300
 	BottomText.TextXAlignment = Enum.TextXAlignment.Left
 
