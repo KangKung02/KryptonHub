@@ -17,12 +17,10 @@ if game.PlaceId == 1499872953 then
   elseif game.PlaceId == 6186867282 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung01/KryptonHub-2.0.0/main/AllScript/6186867282.lua"))();
   elseif game.PlaceId == 6329844902 then
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung01/KryptonHub-2.0.0/main/AllScript/6329844902.lua"))();
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/H2O/main/Free-Uesr/6329844902.lua"))();
   elseif game.PlaceId == 6381829480 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung01/KryptonHub-2.0.0/main/AllScript/6381829480.lua"))();
   elseif game.PlaceId == 6574375780 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung01/KryptonHub-2.0.0/main/AllScript/6574375780.lua"))();
-  elseif game.PlaceId == 6329844902 then
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/KangKung02/H2O/main/Free-Uesr/6329844902.lua"))();
   else return error("this game did't support!", 2)
   end
